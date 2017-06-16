@@ -1,0 +1,10 @@
+---
+
+__load__:
+- targets/st/sdk/pcd.yml
+pcd:
+  configuration:
+    section-type: component
+    meta_components:
+    - pcd
+

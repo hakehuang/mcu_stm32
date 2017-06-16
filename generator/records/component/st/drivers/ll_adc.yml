@@ -1,0 +1,10 @@
+---
+
+__load__:
+- targets/st/sdk/ll_adc.yml
+ll_adc:
+  configuration:
+    section-type: component
+    meta_components:
+    - ll_adc
+

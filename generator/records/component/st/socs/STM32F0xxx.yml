@@ -1,0 +1,9 @@
+__load__:
+  - targets/st/socs/STM32F0xxx.yml
+
+STM32F0xxx:
+  configuration:
+    section-type: component
+    meta_components:
+
+      - STM32F0xxx

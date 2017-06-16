@@ -1,0 +1,27 @@
+---
+
+smbus:
+  configuration:
+    tools:
+      __common__:
+        config:
+          __common__:
+            cc_include:
+            - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc
+              rootdir: stm32_sdk_path
+            - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/Legacy
+              rootdir: stm32_sdk_path
+            cxx_include:
+            - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc
+              rootdir: stm32_sdk_path
+            - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/Legacy
+              rootdir: stm32_sdk_path
+  modules:
+    smbus:
+      virtual-dir: drivers
+      files:
+      - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_smbus.c
+        rootdir: stm32_sdk_path
+      - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_smbus.h
+        rootdir: stm32_sdk_path
+

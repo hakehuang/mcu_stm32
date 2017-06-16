@@ -1,0 +1,19 @@
+---
+habs:
+  meta_components:
+  - stm32f03_evk
+  - STM32F0xxx_sdk
+  iar:
+    targets: {}
+    type: application
+    templates:
+    - templates/iar/general.eww
+    - templates/iar/app_generic_nMISRA/appgeneric.ewd
+    - templates/iar/app_generic_nMISRA/appgeneric.ewp
+    outdir: stm32f03_evk/habs/iar
+    source:
+    - path: apps/habs/main.c
+      virtual-dir: habs
+      rootdir: app_path
+    document:
+      board: stm32f03_evk

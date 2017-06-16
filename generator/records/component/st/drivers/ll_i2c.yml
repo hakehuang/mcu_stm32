@@ -1,0 +1,10 @@
+---
+
+__load__:
+- targets/st/sdk/ll_i2c.yml
+ll_i2c:
+  configuration:
+    section-type: component
+    meta_components:
+    - ll_i2c
+

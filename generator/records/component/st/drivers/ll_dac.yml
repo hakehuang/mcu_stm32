@@ -1,0 +1,10 @@
+---
+
+__load__:
+- targets/st/sdk/ll_dac.yml
+ll_dac:
+  configuration:
+    section-type: component
+    meta_components:
+    - ll_dac
+

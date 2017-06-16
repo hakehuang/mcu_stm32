@@ -1,0 +1,10 @@
+---
+
+__load__:
+- targets/st/sdk/ll_tim.yml
+ll_tim:
+  configuration:
+    section-type: component
+    meta_components:
+    - ll_tim
+

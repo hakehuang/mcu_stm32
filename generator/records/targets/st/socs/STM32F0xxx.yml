@@ -1,0 +1,139 @@
+__hierarchy__:
+  configuration:
+    tools:
+      __common__:
+        config:
+          __common__:
+            cc_include:
+              - path: stm32f030f4/inc
+                rootdir: "stm32_sdk_path"
+              - path: stm32f030f4/Drivers/CMSIS/Device/ST/STM32F0xx/Include
+                rootdir: "stm32_sdk_path"
+              - path: stm32f030f4/Drivers/CMSIS/Include
+                rootdir: "stm32_sdk_path"
+            cxx_include:
+              - path: stm32f030f4/inc
+                rootdir: "stm32_sdk_path"
+  tools:
+    iar:
+      files:
+        - path        : stm32f030f4/Drivers/CMSIS/Device/ST/STM32F0xx/Source/Templates/iar/startup_stm32f030x6.s
+          virtual-dir   : startup
+          rootdir       : "stm32_sdk_path"
+    mdk:
+      files:
+        - path        : stm32f030f4/Drivers/CMSIS/Device/ST/STM32F0xx/Source/Templates/arm/startup_stm32f030x6.s
+          virtual-dir   : startup
+          rootdir       : "stm32_sdk_path"
+    armgcc:
+      files:
+        - path        : stm32f030f4/Drivers/CMSIS/Device/ST/STM32F0xx/Source/Templates/gcc/startup_stm32f030x6.s
+          virtual-dir   : startup
+          rootdir       : "stm32_sdk_path"
+  modules:
+    device:
+      name: device
+      files:
+        - path        : stm32f030f4/Src/stm32f0xx_hal_msp.c
+          virtual-dir   : device
+          rootdir       : "stm32_sdk_path"
+        - path        : stm32f030f4/Src/stm32f0xx_it.c
+          virtual-dir   : device
+          rootdir       : "stm32_sdk_path"
+        - path        : stm32f030f4/Src/system_stm32f0xx.c
+          virtual-dir   : device
+          rootdir       : "stm32_sdk_path"
+        - path        : stm32f030f4/inc/stm32f0xx_hal_conf.h
+          virtual-dir   : device
+          rootdir       : "stm32_sdk_path"
+        - path        : stm32f030f4/inc/stm32f0xx_it.h
+          virtual-dir   : device
+          rootdir       : "stm32_sdk_path"
+
+
+STM32F0xxx:
+  configuration:
+    tools:
+###
+### Iar settings
+###
+      iar:
+        config:
+          __common__:
+            as_flags:
+            cc_flags:
+            cxx_flags:
+            cc_defines:
+              STM32F030x6:
+            cp_defines:
+              STM32F030F4: "ST STM32F030F4"
+
+        load-to:
+          debug:
+            target      : intflash
+            identifier  : Debug
+            config      : debug
+            linker-file : stm32f030f4/Drivers/CMSIS/Device/ST/STM32F0xx/Source/Templates/iar/linker/stm32f030x6_flash.icf
+            rootdir     : "stm32_sdk_path"
+          release:
+            target      : intflash
+            identifier  : Release
+            config      : release
+            linker-file : stm32f030f4/Drivers/CMSIS/Device/ST/STM32F0xx/Source/Templates/iar/linker/stm32f030x6_flash.icf
+            rootdir     : "stm32_sdk_path"
+
+###
+### CMake files
+###
+      armgcc:
+        config:
+          __common__:
+            as_flags:
+              - -mcpu=cortex-m0
+            cc_flags:
+              - -mcpu=cortex-m0
+              - -Og
+              - -Wall
+              - -fdata-sections 
+              - -ffunction-sections
+              - -mthumb
+              - -g
+              - -gdwarf-2
+              - -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)"
+            cxx_flags:
+              - -mcpu=cortex-m0
+              - -Og
+              - -Wall
+              - -fdata-sections 
+              - -ffunction-sections
+              - -mthumb
+              - -g 
+              - -gdwarf-2
+            ld_flags:
+              - -mcpu=cortex-m4
+              - -mfloat-abi=hard
+              - -mfpu=fpv4-sp-d16
+              - -lc
+              - -lm 
+              - -lnosys
+              - -specs=nano.specs
+              - -Wl,--gc-sections
+            cc_defines:
+              STM32F030x6:
+            cp_defines:
+              STM32F030x6: "ST STM32F030x6"
+        load-to:
+          debug:
+            target      : flash
+            identifier  : Debug
+            config      : debug
+            linker-file : stm32f030f4/Drivers/CMSIS/Device/ST/STM32F0xx/Source/Templates/gcc/linker/STM32F030F4Px_FLASH.ld
+            rootdir     : "stm32_sdk_path"
+          release:
+            target      : flash
+            identifier  : Release
+            config      : release
+            linker-file : stm32f030f4/Drivers/CMSIS/Device/ST/STM32F0xx/Source/Templates/gcc/linker/STM32F030F4Px_FLASH.ld
+            rootdir     : "stm32_sdk_path"
+
+

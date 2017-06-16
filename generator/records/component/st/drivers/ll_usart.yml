@@ -1,0 +1,10 @@
+---
+
+__load__:
+- targets/st/sdk/ll_usart.yml
+ll_usart:
+  configuration:
+    section-type: component
+    meta_components:
+    - ll_usart
+

@@ -1,0 +1,9 @@
+---
+__load__:
+- targets/st/sdk/comp.yml
+comp:
+  configuration:
+    section-type: component
+    meta_components:
+    - comp
+

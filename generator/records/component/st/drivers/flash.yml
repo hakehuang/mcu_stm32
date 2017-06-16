@@ -1,0 +1,10 @@
+---
+
+__load__:
+- targets/st/sdk/flash.yml
+flash:
+  configuration:
+    section-type: component
+    meta_components:
+    - flash
+

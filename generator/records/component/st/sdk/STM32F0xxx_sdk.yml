@@ -1,0 +1,102 @@
+__load__:
+  - component/st/socs/STM32F0xxx.yml
+  - component/st/drivers/stm32f0xx_hal.yml
+  - component/st/drivers/adc.yml
+  - component/st/drivers/can.yml
+  - component/st/drivers/cec.yml
+  - component/st/drivers/comp.yml
+  - component/st/drivers/cortex.yml
+  - component/st/drivers/crc.yml
+  - component/st/drivers/dac.yml
+  - component/st/drivers/dma.yml
+  - component/st/drivers/flash.yml
+  - component/st/drivers/gpio.yml
+  - component/st/drivers/i2c.yml
+  - component/st/drivers/i2s.yml
+  - component/st/drivers/irda.yml
+  - component/st/drivers/iwdg.yml
+  - component/st/drivers/pcd.yml
+  - component/st/drivers/pwr.yml
+  - component/st/drivers/rcc.yml
+  - component/st/drivers/rtc.yml
+  - component/st/drivers/smartcard.yml
+  - component/st/drivers/smbus.yml
+  - component/st/drivers/spi.yml
+  - component/st/drivers/tim.yml
+  - component/st/drivers/tsc.yml
+  - component/st/drivers/uart.yml
+  - component/st/drivers/usart.yml
+  - component/st/drivers/wwdg.yml
+  - component/st/drivers/ll_adc.yml
+  - component/st/drivers/ll_comp.yml
+  - component/st/drivers/ll_crc.yml
+  - component/st/drivers/ll_crs.yml
+  - component/st/drivers/ll_dac.yml
+  - component/st/drivers/ll_dma.yml
+  - component/st/drivers/ll_exti.yml
+  - component/st/drivers/ll_gpio.yml
+  - component/st/drivers/ll_i2c.yml
+  - component/st/drivers/ll_pwr.yml
+  - component/st/drivers/ll_rcc.yml
+  - component/st/drivers/ll_rtc.yml
+  - component/st/drivers/ll_spi.yml
+  - component/st/drivers/ll_tim.yml
+  - component/st/drivers/ll_usart.yml
+  - component/st/drivers/ll_utils.yml
+  - component/st/drivers/ll_wwdg.yml
+
+
+__hierarchy__:
+  configuration:
+    section-type: component 
+
+STM32F0xxx_sdk:
+  __add__:
+    - STM32F0xxx
+    - stm32f0xx_hal
+    - adc
+    - can
+    - cec
+    - comp
+    - cortex
+    - crc
+    - dac
+    - dma
+    - flash
+    - gpio
+    - i2c
+    - i2s
+    - irda
+    - iwdg
+    - pcd
+    - pwr
+    - rcc
+    - rtc
+    - smartcard
+    - smbus
+    - spi
+    - tim
+    - tsc
+    - uart
+    - usart
+    - wwdg
+    - ll_adc
+    - ll_comp
+    - ll_crc
+    - ll_crs
+    - ll_dac
+    - ll_dma
+    - ll_exti
+    - ll_gpio
+    - ll_i2c
+    - ll_pwr
+    - ll_rcc
+    - ll_rtc
+    - ll_spi
+    - ll_tim
+    - ll_usart
+    - ll_utils
+    - ll_wwdg
+  configuration:
+    meta_components:
+      - STM32F0xxx_sdk

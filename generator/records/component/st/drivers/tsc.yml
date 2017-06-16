@@ -1,0 +1,10 @@
+---
+
+__load__:
+- targets/st/sdk/tsc.yml
+tsc:
+  configuration:
+    section-type: component
+    meta_components:
+    - tsc
+

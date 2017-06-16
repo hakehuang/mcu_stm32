@@ -1,0 +1,9 @@
+__load__:
+  - targets/st/sdk/stm32f0xx_hal.yml
+
+stm32f0xx_hal:
+  configuration:
+    section-type: component
+    meta_components:
+
+      - stm32f0xx_hal

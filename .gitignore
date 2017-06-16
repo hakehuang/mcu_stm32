@@ -1,0 +1,13 @@
+*.[o]
+*~
+*.hex
+*.bin
+*.elf
+*.map
+*.swp
+*.dep
+*.sfr
+*.iar/
+*.wsdt
+build/
+

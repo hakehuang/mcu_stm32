@@ -1,0 +1,10 @@
+---
+
+__load__:
+- targets/st/sdk/wwdg.yml
+wwdg:
+  configuration:
+    section-type: component
+    meta_components:
+    - wwdg
+

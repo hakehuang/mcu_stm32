@@ -1,0 +1,7 @@
+
+stm32f03_evk:
+  document:
+    board: stm32f03_evk
+  configuration:
+    report-name         : stm32f03_evk
+    board               : stm32f03_evk

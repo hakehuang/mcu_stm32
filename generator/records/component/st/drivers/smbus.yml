@@ -1,0 +1,10 @@
+---
+
+__load__:
+- targets/st/sdk/smbus.yml
+smbus:
+  configuration:
+    section-type: component
+    meta_components:
+    - smbus
+

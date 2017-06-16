@@ -1,0 +1,8 @@
+__load__:
+  - targets/st/boards/stm32f03_evk.yml
+
+stm32f03_evk:
+  configuration:
+    section-type: component
+    meta_components:
+      - stm32f03_evk

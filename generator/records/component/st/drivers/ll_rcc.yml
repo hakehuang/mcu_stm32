@@ -1,0 +1,10 @@
+---
+
+__load__:
+- targets/st/sdk/ll_rcc.yml
+ll_rcc:
+  configuration:
+    section-type: component
+    meta_components:
+    - ll_rcc
+

@@ -1,0 +1,10 @@
+---
+
+__load__:
+- targets/st/sdk/ll_crc.yml
+ll_crc:
+  configuration:
+    section-type: component
+    meta_components:
+    - ll_crc
+

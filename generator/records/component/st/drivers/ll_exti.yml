@@ -1,0 +1,10 @@
+---
+
+__load__:
+- targets/st/sdk/ll_exti.yml
+ll_exti:
+  configuration:
+    section-type: component
+    meta_components:
+    - ll_exti
+

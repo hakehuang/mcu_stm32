@@ -1,0 +1,9 @@
+__load__:
+  - targets/st/sdk/can.yml
+
+can:
+  configuration:
+    section-type: component
+    meta_components:
+
+      - can

@@ -1,0 +1,10 @@
+---
+
+__load__:
+- targets/st/sdk/cortex.yml
+cortex:
+  configuration:
+    section-type: component
+    meta_components:
+    - cortex
+

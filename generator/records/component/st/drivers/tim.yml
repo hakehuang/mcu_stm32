@@ -1,0 +1,10 @@
+---
+
+__load__:
+- targets/st/sdk/tim.yml
+tim:
+  configuration:
+    section-type: component
+    meta_components:
+    - tim
+

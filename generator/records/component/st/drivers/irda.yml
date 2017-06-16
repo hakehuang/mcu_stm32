@@ -1,0 +1,10 @@
+---
+
+__load__:
+- targets/st/sdk/irda.yml
+irda:
+  configuration:
+    section-type: component
+    meta_components:
+    - irda
+

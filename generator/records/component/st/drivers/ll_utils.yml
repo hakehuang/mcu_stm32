@@ -1,0 +1,10 @@
+---
+
+__load__:
+- targets/st/sdk/ll_utils.yml
+ll_utils:
+  configuration:
+    section-type: component
+    meta_components:
+    - ll_utils
+

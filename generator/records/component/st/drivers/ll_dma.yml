@@ -1,0 +1,10 @@
+---
+
+__load__:
+- targets/st/sdk/ll_dma.yml
+ll_dma:
+  configuration:
+    section-type: component
+    meta_components:
+    - ll_dma
+

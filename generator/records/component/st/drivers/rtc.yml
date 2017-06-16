@@ -1,0 +1,10 @@
+__load__:
+ - targets/st/sdk/rtc.yml
+
+rtc:
+  configuration:
+    section-type: component
+    meta_components:
+    - rtc
+
+

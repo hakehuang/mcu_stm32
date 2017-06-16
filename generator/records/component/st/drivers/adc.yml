@@ -1,0 +1,9 @@
+__load__:
+  - targets/st/sdk/adc.yml
+
+adc:
+  configuration:
+    section-type: component
+    meta_components:
+
+      - adc

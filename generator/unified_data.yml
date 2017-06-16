@@ -1,0 +1,507 @@
+---
+habs:
+  meta_components:
+  - stm32f03_evk
+  - STM32F0xxx_sdk
+  - STM32F0xxx
+  - stm32f0xx_hal
+  - adc
+  - can
+  - cec
+  - comp
+  - cortex
+  - crc
+  - dac
+  - dma
+  - flash
+  - gpio
+  - i2c
+  - i2s
+  - irda
+  - iwdg
+  - pcd
+  - pwr
+  - rcc
+  - rtc
+  - smartcard
+  - smbus
+  - spi
+  - tim
+  - tsc
+  - uart
+  - usart
+  - ll_wwdg
+  - wwdg
+  - ll_adc
+  - ll_comp
+  - ll_crc
+  - ll_crs
+  - ll_dac
+  - ll_dma
+  - ll_exti
+  - ll_gpio
+  - ll_i2c
+  - ll_pwr
+  - ll_rcc
+  - ll_rtc
+  - ll_spi
+  - ll_tim
+  - ll_usart
+  - ll_utils
+  iar:
+    targets:
+      debug:
+        identifier: Debug
+        target: intflash
+        cc_defines:
+          DEBUG: 
+          TOOLCHAIN_IAR: 
+          STM32F030x6: 
+        cxx_defines:
+          DEBUG: 
+          TOOLCHAIN_IAR: 
+        as_defines: {}
+        ld_flags: []
+        cc_include:
+        - path: apps/habs
+          rootdir: app_path
+        - path: stm32f030f4/inc
+          rootdir: stm32_sdk_path
+        - path: stm32f030f4/Drivers/CMSIS/Device/ST/STM32F0xx/Include
+          rootdir: stm32_sdk_path
+        - path: stm32f030f4/Drivers/CMSIS/Include
+          rootdir: stm32_sdk_path
+        - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc
+          rootdir: stm32_sdk_path
+        - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/Legacy
+          rootdir: stm32_sdk_path
+        cc_flags: []
+        as_flags: []
+        cxx_flags: []
+        as_include: []
+        cp_defines:
+          STM32F030F4: ST STM32F030F4
+        cxx_include:
+        - path: stm32f030f4/inc
+          rootdir: stm32_sdk_path
+        - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc
+          rootdir: stm32_sdk_path
+        - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/Legacy
+          rootdir: stm32_sdk_path
+        linker_file:
+          path: stm32f030f4/Drivers/CMSIS/Device/ST/STM32F0xx/Source/Templates/iar/linker/stm32f030x6_flash.icf
+          rootdir: stm32_sdk_path
+        config: debug
+        libraries: []
+      release:
+        identifier: Release
+        target: intflash
+        cc_defines:
+          NDEBUG: 
+          TOOLCHAIN_IAR: 
+          STM32F030x6: 
+        cxx_defines:
+          TOOLCHAIN_IAR: 
+        as_defines: {}
+        ld_flags: []
+        cc_include:
+        - path: apps/habs
+          rootdir: app_path
+        - path: stm32f030f4/inc
+          rootdir: stm32_sdk_path
+        - path: stm32f030f4/Drivers/CMSIS/Device/ST/STM32F0xx/Include
+          rootdir: stm32_sdk_path
+        - path: stm32f030f4/Drivers/CMSIS/Include
+          rootdir: stm32_sdk_path
+        - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc
+          rootdir: stm32_sdk_path
+        - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/Legacy
+          rootdir: stm32_sdk_path
+        cc_flags: []
+        as_flags: []
+        cxx_flags: []
+        as_include: []
+        cp_defines:
+          STM32F030F4: ST STM32F030F4
+        cxx_include:
+        - path: stm32f030f4/inc
+          rootdir: stm32_sdk_path
+        - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc
+          rootdir: stm32_sdk_path
+        - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/Legacy
+          rootdir: stm32_sdk_path
+        linker_file:
+          path: stm32f030f4/Drivers/CMSIS/Device/ST/STM32F0xx/Source/Templates/iar/linker/stm32f030x6_flash.icf
+          rootdir: stm32_sdk_path
+        config: release
+        libraries: []
+    type: application
+    templates:
+    - templates/iar/general.eww
+    - templates/iar/app_generic_nMISRA/appgeneric.ewd
+    - templates/iar/app_generic_nMISRA/appgeneric.ewp
+    outdir: stm32f03_evk/habs/iar
+    source:
+    - path: stm32f030f4/Drivers/CMSIS/Device/ST/STM32F0xx/Source/Templates/iar/startup_stm32f030x6.s
+      virtual-dir: startup
+      rootdir: stm32_sdk_path
+    - path: apps/habs/main.c
+      virtual-dir: habs
+      rootdir: app_path
+    - path: stm32f030f4/Src/stm32f0xx_hal_msp.c
+      virtual-dir: device
+      rootdir: stm32_sdk_path
+    - path: stm32f030f4/Src/stm32f0xx_it.c
+      virtual-dir: device
+      rootdir: stm32_sdk_path
+    - path: stm32f030f4/Src/system_stm32f0xx.c
+      virtual-dir: device
+      rootdir: stm32_sdk_path
+    - path: stm32f030f4/inc/stm32f0xx_hal_conf.h
+      virtual-dir: device
+      rootdir: stm32_sdk_path
+    - path: stm32f030f4/inc/stm32f0xx_it.h
+      virtual-dir: device
+      rootdir: stm32_sdk_path
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_adc.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_adc.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_comp.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_comp.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cec.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_cec.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_comp.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_comp.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_cortex.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_crc.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_crc.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dac.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac_ex.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dac_ex.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dma.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dma_ex.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash_ex.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_flash.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_flash_ex.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_gpio.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_gpio.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_gpio_ex.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_i2c.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_i2c_ex.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2s.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_i2s.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_irda.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/inc/stm32f0xx_hal_irda.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/inc/stm32f0xx_hal_irda_ex.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_iwdg.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_iwdg.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pcd.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pcd_ex.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr_ex.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr_ex.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_rcc.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_rcc_ex.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rtc.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rtc_ex.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_rtc.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_rtc_ex.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_smartcard.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_smartcard_ex.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_smartcard.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_smartcard_ex.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_smbus.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_smbus.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_spi.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_spi_ex.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_spi.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_spi_ex.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim_ex.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tsc.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tsc.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart_ex.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_usart.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_usart.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_usart_ex.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_wwdg.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_wwdg.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_adc.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_adc.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_comp.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_comp.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_crc.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_crc.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_crs.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_crs.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_dac.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_dac.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_dma.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_dma.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_exti.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_exti.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_gpio.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_gpio.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_i2c.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_i2c.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_pwr.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_pwr.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_rcc.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_rcc.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_rtc.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_rtc.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_spi.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_spi.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_tim.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_tim.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usart.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_usart.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_utils.c
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_utils.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+    - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ll_wwdg.h
+      rootdir: stm32_sdk_path
+      virtual_dir: drivers
+  document:
+    project_name: habs
+    board: stm32f03_evk

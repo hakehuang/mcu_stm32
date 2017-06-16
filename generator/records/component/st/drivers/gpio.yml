@@ -1,0 +1,10 @@
+---
+
+__load__:
+- targets/st/sdk/gpio.yml
+gpio:
+  configuration:
+    section-type: component
+    meta_components:
+    - gpio
+

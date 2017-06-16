@@ -1,0 +1,10 @@
+---
+
+__load__:
+- targets/st/sdk/smartcard.yml
+smartcard:
+  configuration:
+    section-type: component
+    meta_components:
+    - smartcard
+

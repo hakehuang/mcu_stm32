@@ -1,0 +1,10 @@
+ _buf << %Q`__load__:\r
+  - targets/st/sdk/#{escape((@COMP).to_s)}.yml\r
+\r
+#{escape((@COMP).to_s)}:\r
+  configuration:\r
+    section-type: component\r
+    meta_components:\r
+\r
+      - #{escape((@COMP).to_s)}\r
+\r\n`

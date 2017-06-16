@@ -1,0 +1,25 @@
+ _buf << %Q`#{escape((@COMP).to_s)}:\r
+  configuration:\r
+    tools:\r
+      __common__:\r
+        config:\r
+          __common__:\r
+            cc_include:\r
+            - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc\r
+              rootdir: stm32_sdk_path\r
+            - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/Legacy\r
+              rootdir: stm32_sdk_path\r
+            cxx_include:\r
+            - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc\r
+              rootdir: stm32_sdk_path\r
+            - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Inc/Legacy\r
+              rootdir: stm32_sdk_path\r
+  modules:\r
+    #{escape((@COMP).to_s)}:\r
+      virtual-dir: drivers\r
+      files:\r
+      - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_comp.c\r
+        rootdir: stm32_sdk_path\r
+      - path: stm32f030f4/Drivers/STM32F0xx_HAL_Driver/Src/\r
+        rootdir: stm32_sdk_path\r
+\r\n`

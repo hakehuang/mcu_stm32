@@ -1,0 +1,10 @@
+---
+
+__load__:
+- targets/st/sdk/ll_pwr.yml
+ll_pwr:
+  configuration:
+    section-type: component
+    meta_components:
+    - ll_pwr
+
