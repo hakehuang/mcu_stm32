@@ -7,6 +7,11 @@ habs:
       __common__:
         config:
           __common__:
+            tool_chain_set_spec:
+              GOutputBinary:
+                state: 1
+              IlinkOutputFile:
+                state: habs.out
             as_defines: 
             cc_defines: 
             cxx_defines: 
