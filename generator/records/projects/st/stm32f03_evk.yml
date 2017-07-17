@@ -2,6 +2,7 @@ __load__:
   - applications/apps.yml
   - component/st/boards/stm32f03_evk.yml
   - component/st/sdk/STM32F0xxx_sdk.yml
+  - component/st/midware/freertos.yml
 
 __hierarchy__:
   mode: post-process-app
@@ -10,4 +11,8 @@ habs:
   __add__:
     - stm32f03_evk
     - STM32F0xxx_sdk
+    # - Freertos_port_iar_cm0
+    # - Freertos_port_heap1
+    # - Freertos_CMSIS
+    # - FreeRTOS
   attribute: 'required'

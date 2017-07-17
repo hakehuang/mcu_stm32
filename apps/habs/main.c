@@ -1,6 +1,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f0xx_hal.h"
+#include "board.h"
 
 /* USER CODE BEGIN Includes */
 
@@ -51,20 +52,20 @@ int main(void)
   /* Initialize all configured peripherals */
 
   /* USER CODE BEGIN 2 */
+  BSP_LED_Init();
+  BSP_UART_Init();
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  printf("HABS starts\r\n");
   while (1)
   {
-  /* USER CODE END WHILE */
-
-  /* USER CODE BEGIN 3 */
-
+      HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_4); 
+      HAL_Delay(100);
+      
   }
-  /* USER CODE END 3 */
-
 }
 
 /** System Clock Configuration

@@ -1,0 +1,63 @@
+__load__:
+  - middleware/freertos/freertos.yml
+
+Freertos_port_iar_cm0:
+  configuration:
+    section-type: component
+    meta_components:
+
+      - Freertos_port_iar_cm0
+
+Freertos_port_heap1:
+  configuration:
+    section-type: component
+    meta_components:
+
+      - Freertos_port_iar_port_heap1
+
+Freertos_port_heap2:
+  configuration:
+    section-type: component
+    meta_components:
+
+      - Freertos_port_iar_port_heap2
+
+Freertos_port_heap3:
+  configuration:
+    section-type: component
+    meta_components:
+
+      - Freertos_port_iar_port_heap3
+
+
+Freertos_port_heap4:
+  configuration:
+    section-type: component
+    meta_components:
+
+      - Freertos_port_iar_port_heap4
+
+Freertos_port_heap5:
+  configuration:
+    section-type: component
+    meta_components:
+
+      - Freertos_port_iar_port_heap5
+
+Freertos_CMSIS:
+  configuration:
+    section-type: component
+    meta_components:
+
+      - Freertos_CMSIS
+
+FreeRTOS:
+  configuration:
+    section-type: component
+    meta_components:
+
+      - FreeRTOS
+
+
+
+

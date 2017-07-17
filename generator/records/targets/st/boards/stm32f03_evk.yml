@@ -1,3 +1,12 @@
+__hierarchy__:
+  configuration:
+    tools:
+      __common__:
+        config:
+          __common__:
+            cc_include:
+              - path: apps/boards/stm32f03_evk
+                rootdir: "stm32_sdk_path"
 
 stm32f03_evk:
   document:
@@ -5,3 +14,19 @@ stm32f03_evk:
   configuration:
     report-name         : stm32f03_evk
     board               : stm32f03_evk
+  modules:
+    bsp:
+      name              : bsp
+      files:
+        - path        : apps/boards/stm32f03_evk/stm32f0xx_hal_conf.h
+          virtual-dir   : bsp
+          rootdir       : "app_path"
+        - path        : apps/boards/stm32f03_evk/board.c
+          virtual-dir   : bsp
+          rootdir       : "app_path"
+        - path        : apps/boards/stm32f03_evk/board.h
+          virtual-dir   : bsp
+          rootdir       : "app_path"
+        - path        : apps/boards/stm32f03_evk/board_irq.c
+          virtual-dir   : bsp
+          rootdir       : "app_path"

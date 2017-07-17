@@ -1,0 +1,200 @@
+__hierarchy__:
+  configuration:
+    tools:
+      __common__:
+        config:
+          __common__:
+            cc_include:
+              - path: stm32f030f4/Third_Party/FreeRTOS/Source/CMSIS_RTOS
+                rootdir: "stm32_sdk_path"
+              - path: stm32f030f4/Third_Party/FreeRTOS/Source/include
+                rootdir: "stm32_sdk_path"
+            cxx_include:
+              - path: stm32f030f4/Third_Party/FreeRTOS/Source/CMSIS_RTOS
+                rootdir: "stm32_sdk_path"
+              - path: stm32f030f4/Third_Party/FreeRTOS/Source/include
+                rootdir: "stm32_sdk_path"
+
+
+Freertos_port_iar_cm0:
+  configuration:
+    tools:
+      __common__:
+        config:
+          __common__:
+            cc_include:
+              - path: stm32f030f4/Third_Party/FreeRTOS/Source/portable
+                rootdir: "stm32_sdk_path"
+              - path: stm32f030f4/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM0
+                rootdir: "stm32_sdk_path"
+            cxx_include:
+              - path: stm32f030f4/Third_Party/FreeRTOS/Source/portable
+                rootdir: "stm32_sdk_path"
+              - path: stm32f030f4/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM0
+                rootdir: "stm32_sdk_path"  
+  tools:
+    iar:
+      files:
+        - path        : stm32f030f4/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM0/port.c
+          virtual-dir   : Freertos_port
+          rootdir       : "stm32_sdk_path"
+        - path        : stm32f030f4/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM0/portasm.s
+          virtual-dir   : Freertos_port
+          rootdir       : "stm32_sdk_path"
+        - path        : stm32f030f4/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM0/portmacro.h
+          virtual-dir   : Freertos_port
+          rootdir       : "stm32_sdk_path"
+
+
+Freertos_port_heap1:
+  configuration:
+    tools:
+      __common__:
+        config:
+          __common__:
+            cc_include:
+              - path: stm32f030f4/Third_Party/FreeRTOS/Source/portable
+                rootdir: "stm32_sdk_path"
+            cxx_include:
+              - path: stm32f030f4/Third_Party/FreeRTOS/Source/portable
+                rootdir: "stm32_sdk_path"
+  modules:
+    heap_1:
+      name: heap_1
+      files:
+        - path        : stm32f030f4/Third_Party/FreeRTOS/Source/portable/MemMang/heap_1.c
+          virtual-dir   : Freertos_port
+          rootdir       : "stm32_sdk_path"
+
+Freertos_port_heap2:
+  configuration:
+    tools:
+      __common__:
+        config:
+          __common__:
+            cc_include:
+              - path: stm32f030f4/Third_Party/FreeRTOS/Source/portable
+                rootdir: "stm32_sdk_path"
+            cxx_include:
+              - path: stm32f030f4/Third_Party/FreeRTOS/Source/portable
+                rootdir: "stm32_sdk_path"
+  modules:
+    heap_2:
+      name: heap_2
+      files:
+        - path        : stm32f030f4/Third_Party/FreeRTOS/Source/portable/MemMang/heap_2.c
+          virtual-dir   : Freertos_port
+          rootdir       : "stm32_sdk_path"
+
+Freertos_port_heap3:
+  configuration:
+    tools:
+      __common__:
+        config:
+          __common__:
+            cc_include:
+              - path: stm32f030f4/Third_Party/FreeRTOS/Source/portable
+                rootdir: "stm32_sdk_path"
+            cxx_include:
+              - path: stm32f030f4/Third_Party/FreeRTOS/Source/portable
+                rootdir: "stm32_sdk_path"
+  modules:
+    heap_3:
+      name: heap_3
+      files:
+        - path        : stm32f030f4/Third_Party/FreeRTOS/Source/portable/MemMang/heap_3.c
+          virtual-dir   : Freertos_port
+          rootdir       : "stm32_sdk_path"
+
+Freertos_port_heap4:
+  configuration:
+    tools:
+      __common__:
+        config:
+          __common__:
+            cc_include:
+              - path: stm32f030f4/Third_Party/FreeRTOS/Source/portable
+                rootdir: "stm32_sdk_path"
+            cxx_include:
+              - path: stm32f030f4/Third_Party/FreeRTOS/Source/portable
+                rootdir: "stm32_sdk_path"
+  modules:
+    heap_4:
+      name: heap_4
+      files:
+        - path        : stm32f030f4/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c
+          virtual-dir   : Freertos_port
+          rootdir       : "stm32_sdk_path"
+
+Freertos_port_heap5:
+  configuration:
+    tools:
+      __common__:
+        config:
+          __common__:
+            cc_include:
+              - path: stm32f030f4/Third_Party/FreeRTOS/Source/portable
+                rootdir: "stm32_sdk_path"
+            cxx_include:
+              - path: stm32f030f4/Third_Party/FreeRTOS/Source/portable
+                rootdir: "stm32_sdk_path"
+  modules:
+    heap_5:
+      name: heap_5
+      files:
+        - path        : stm32f030f4/Third_Party/FreeRTOS/Source/portable/MemMang/heap_5.c
+          virtual-dir   : Freertos_port
+          rootdir       : "stm32_sdk_path"
+
+
+Freertos_CMSIS:
+  configuration:
+    tools:
+      __common__:
+        config:
+          __common__:
+            cc_include:
+              - path: stm32f030f4/Third_Party/FreeRTOS/Source/CMSIS_RTOS
+                rootdir: "stm32_sdk_path"
+            cxx_include:
+              - path: stm32f030f4/Third_Party/FreeRTOS/Source/CMSIS_RTOS
+                rootdir: "stm32_sdk_path"
+  modules:
+    freertos_cmsis:
+      name: freertos_cmsis
+      files:
+        - path        : stm32f030f4/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c
+          virtual-dir   : Freertos_CMSIS
+          rootdir       : "stm32_sdk_path"
+        - path        : stm32f030f4/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
+          virtual-dir   : Freertos_CMSIS
+          rootdir       : "stm32_sdk_path"
+
+FreeRTOS:
+  modules:
+    freertos:
+      name: freertos
+      files:
+        - path        : stm32f030f4/Third_Party/FreeRTOS/Source/croutine.c
+          virtual-dir   : Freertos
+          rootdir       : "stm32_sdk_path"
+        - path        : stm32f030f4/Third_Party/FreeRTOS/Source/event_groups.c
+          virtual-dir   : Freertos
+          rootdir       : "stm32_sdk_path"
+        - path        : stm32f030f4/Third_Party/FreeRTOS/Source/list.c
+          virtual-dir   : Freertos
+          rootdir       : "stm32_sdk_path"
+        - path        : stm32f030f4/Third_Party/FreeRTOS/Source/queue.c
+          virtual-dir   : Freertos
+          rootdir       : "stm32_sdk_path"
+        - path        : stm32f030f4/Third_Party/FreeRTOS/Source/tasks.c
+          virtual-dir   : Freertos
+          rootdir       : "stm32_sdk_path"
+        - path        : stm32f030f4/Third_Party/FreeRTOS/Source/timers.c
+          virtual-dir   : Freertos
+          rootdir       : "stm32_sdk_path"
+
+
+
+
+
