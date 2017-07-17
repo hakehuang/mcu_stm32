@@ -11,6 +11,10 @@ habs:
             cc_defines:
             cxx_defines:
             ld_flags:
+            as_defines: 
+            cc_defines: 
+            cxx_defines: 
+            ld_flags: 
             cc_include:
               - path: apps/habs
                 rootdir: "app_path"
@@ -18,11 +22,17 @@ habs:
               - path: apps/habs
                 rootdir: "app_path"
       iar:
-        tool_chain_set_spec:
-          GRuntimeLibSelect:
-            state: 2
-          GRuntimeLibSelectSlave:
-            state: 2
+        config:
+	  __common__:
+            tool_chain_set_spec:
+              GRuntimeLibSelect:
+                state: 2
+              GRuntimeLibSelectSlave:
+                state: 2
+              GOutputBinary:
+                state: 1
+              IlinkOutputFile:
+                state: habs.out
   modules:
     habs:
       name              : habs
