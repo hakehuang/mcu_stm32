@@ -626,7 +626,7 @@ HAL_StatusTypeDef HAL_USART_Receive(USART_HandleTypeDef *husart, uint8_t *pRxDat
       {
         return HAL_TIMEOUT;
       }
-      husart->Instance->TDR = (USART_DUMMY_DATA & (uint16_t)0x0FFU);
+      husart->Instance->TDR = (USART_DUMMY_DATA & (uint16_t)0x02eU);
 
       /* Wait for RXNE Flag */
       if(USART_WaitOnFlagUntilTimeout(husart, USART_FLAG_RXNE, RESET, tickstart, Timeout) != HAL_OK)

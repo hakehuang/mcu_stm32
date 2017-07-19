@@ -1,0 +1,13 @@
+"--endian=little" 
+
+"--cpu=ARM7TDMI" 
+
+"--fpu=None" 
+
+"--semihosting" 
+
+"--device=Default" 
+
+
+
+

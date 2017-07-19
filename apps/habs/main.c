@@ -1,71 +1,91 @@
 /* Includes ------------------------------------------------------------------*/
+#include <string.h>
+
 #include "main.h"
 #include "stm32f0xx_hal.h"
 #include "board.h"
+#include "function.h"
 
-/* USER CODE BEGIN Includes */
-
-/* USER CODE END Includes */
-
-/* Private variables ---------------------------------------------------------*/
-
-/* USER CODE BEGIN PV */
-/* Private variables ---------------------------------------------------------*/
-
-/* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 
-/* USER CODE BEGIN PFP */
-/* Private function prototypes -----------------------------------------------*/
+typedef void (*callback)(void * params);
 
-/* USER CODE END PFP */
 
-/* USER CODE BEGIN 0 */
 
-/* USER CODE END 0 */
+typedef struct cmd_lut_t{
+  char cmd[48];
+  callback cb;
+} CMD_LUT_T;
+
+
+
+
+CMD_LUT_T cmd_luts [] = {
+  {"RESET_BOARD", reset_board},
+};
+
 
 int main(void)
 {
-
-  /* USER CODE BEGIN 1 */
-
-  /* USER CODE END 1 */
-
-  /* MCU Configuration----------------------------------------------------------*/
-
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+  uint8_t recv_buf[100];
+  int count = 0;
+  
   HAL_Init();
-
-  /* USER CODE BEGIN Init */
-
-  /* USER CODE END Init */
 
   /* Configure the system clock */
   SystemClock_Config();
 
-  /* USER CODE BEGIN SysInit */
-
-  /* USER CODE END SysInit */
-
-  /* Initialize all configured peripherals */
 
   /* USER CODE BEGIN 2 */
   BSP_LED_Init();
   BSP_UART_Init();
+  BSP_GPIO_Init();
 
-  /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  printf("HABS starts\r\n");
+  printf("\r\nHABS starts!!!\r\n");
+   printf("\r\n %s \r\n", __DATE__);
+  /*flash led once*/
+  HAL_GPIO_TogglePin(GPIO_LED_PORT, GPIO_LED_PIN); 
+  HAL_Delay(100);
+  HAL_GPIO_TogglePin(GPIO_LED_PORT, GPIO_LED_PIN);
+  memset(recv_buf, 0, sizeof(recv_buf));
   while (1)
   {
-      HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_4); 
-      HAL_Delay(100);
+    char ch = 0;
+
+    while( HAL_OK != HAL_UART_Receive(&huart1, (uint8_t*)&ch, 1, 500000))
+    {
+      ;
+    }
+
+    if(ch != 0x0d)
+    {
+       recv_buf[count%100] = ch;
+       printf("%c", ch);
+       count++;
+    } else if (count > 0){
+      int i;
+      recv_buf[count%100] = '\0';
       
-  }
+      for (i=0; i < sizeof(cmd_luts) / sizeof(CMD_LUT_T); i++)
+      {
+        if (strncmp((char const *)recv_buf, cmd_luts[i].cmd, count)==0)
+        {
+          if (cmd_luts[i].cb)
+          {
+            printf("\r\nrunning %s\r\n", cmd_luts[i].cmd);
+            cmd_luts[i].cb(recv_buf);
+          }
+        }
+      }
+      memset(recv_buf, 0, sizeof(recv_buf));
+      count = 0;
+    }
+  } 
 }
 
 /** System Clock Configuration

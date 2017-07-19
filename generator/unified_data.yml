@@ -56,11 +56,15 @@ habs:
         cc_defines:
           DEBUG: 
           TOOLCHAIN_IAR: 
+          stm32f03_evk: 
           STM32F030x6: 
-        cxx_defines:
-          DEBUG: 
-          TOOLCHAIN_IAR: 
+        cxx_defines: {}
         as_defines: {}
+        tool_chain_set_spec:
+          GOutputBinary:
+            state: 1
+          IlinkOutputFile:
+            state: habs.out
         ld_flags: []
         cc_include:
         - path: apps/habs
@@ -103,9 +107,14 @@ habs:
         cc_defines:
           NDEBUG: 
           TOOLCHAIN_IAR: 
+          stm32f03_evk: 
           STM32F030x6: 
-        cxx_defines:
-          TOOLCHAIN_IAR: 
+        tool_chain_set_spec:
+          GOutputBinary:
+            state: 1
+          IlinkOutputFile:
+            state: habs.out
+        cxx_defines: {}
         as_defines: {}
         ld_flags: []
         cc_include:
@@ -157,6 +166,12 @@ habs:
       virtual-dir: habs
       rootdir: app_path
     - path: apps/habs/main.h
+      virtual-dir: habs
+      rootdir: app_path
+    - path: apps/habs/function.c
+      virtual-dir: habs
+      rootdir: app_path
+    - path: apps/habs/function.h
       virtual-dir: habs
       rootdir: app_path
     - path: apps/boards/stm32f03_evk/stm32f0xx_hal_conf.h

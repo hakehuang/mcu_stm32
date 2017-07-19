@@ -6,8 +6,9 @@ __hierarchy__:
           __common__:
             cc_include:
               - path: apps/boards/stm32f03_evk
-                rootdir: "stm32_sdk_path"
-
+                rootdir: "stm32_sdk_path" 
+            cc_defines:
+              stm32f03_evk:
 stm32f03_evk:
   document:
     board: stm32f03_evk

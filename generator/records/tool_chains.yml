@@ -27,7 +27,6 @@ __common__:
             cc_defines:
               DEBUG:
             cxx_defines:
-              DEBUG:
             as_defines:
           # define release configuration
           release:
@@ -48,7 +47,6 @@ __common__:
             cc_defines:
               TOOLCHAIN_IAR:
             cxx_defines:
-              TOOLCHAIN_IAR:
         project-templates:
           - templates/iar/general.eww
           - templates/iar/app_generic_nMISRA/appgeneric.ewd

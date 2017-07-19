@@ -4,10 +4,22 @@
 #include <stdio.h>
 
 
+extern UART_HandleTypeDef huart1;
+
 void BSP_LED_Init();
 
 void BSP_UART_Init();
 
+void BSP_GPIO_Init();
+
+int getkey(void);
+
+#ifdef stm32f03_evk
+#define GPIO0_PIN GPIO_PIN_0
+#define GPIO0_PORT GPIOA
+#define GPIO_LED_PIN GPIO_PIN_4
+#define GPIO_LED_PORT GPIOA
+#endif
 #ifdef __GNUC__
   /* With GCC/RAISONANCE, small printf (option LD Linker->Libraries->Small printf
      set to 'Yes') calls __io_putchar() */

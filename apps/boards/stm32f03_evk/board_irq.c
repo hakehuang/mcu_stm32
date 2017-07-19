@@ -53,6 +53,7 @@ void PendSV_Handler(void)
 void SysTick_Handler(void)
 {
   HAL_IncTick();
+  HAL_SYSTICK_IRQHandler();
 }
 
 /******************************************************************************/
@@ -62,14 +63,10 @@ void SysTick_Handler(void)
 /*  file (startup_stm32f0x8.s).                                               */
 /******************************************************************************/
 
-/**
-  * @brief  This function handles PPP interrupt request.
-  * @param  None
-  * @retval None
-  */
-/*void PPP_IRQHandler(void)
+void USART1_IRQHandler(void)
 {
-}*/
+			
+}
 
 /**
   * @}

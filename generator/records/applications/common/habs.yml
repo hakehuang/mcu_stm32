@@ -23,12 +23,8 @@ habs:
                 rootdir: "app_path"
       iar:
         config:
-	  __common__:
+          __common__:
             tool_chain_set_spec:
-              GRuntimeLibSelect:
-                state: 2
-              GRuntimeLibSelectSlave:
-                state: 2
               GOutputBinary:
                 state: 1
               IlinkOutputFile:
@@ -41,5 +37,11 @@ habs:
           virtual-dir   : habs
           rootdir       : "app_path"
         - path        : apps/habs/main.h
+          virtual-dir   : habs
+          rootdir       : "app_path"
+        - path        : apps/habs/function.c
+          virtual-dir   : habs
+          rootdir       : "app_path"
+        - path        : apps/habs/function.h
           virtual-dir   : habs
           rootdir       : "app_path"
