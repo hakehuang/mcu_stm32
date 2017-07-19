@@ -7,7 +7,10 @@
 #include "function.h"
 
 
+
 /* Private function prototypes -----------------------------------------------*/
+#define MAXIMUM_TIMEOUT_MS 5000
+
 void SystemClock_Config(void);
 
 typedef void (*callback)(void * params);
@@ -20,12 +23,30 @@ typedef struct cmd_lut_t{
 } CMD_LUT_T;
 
 
-
-
 CMD_LUT_T cmd_luts [] = {
   {"RESET_BOARD", reset_board},
+  {"sreset", sreset},
 };
 
+
+static int in_cmd = 0;
+
+void HAL_SYSTICK_Callback(void)
+{
+  static int cnt = 0;
+  if (in_cmd)
+  {
+    cnt++;
+  }else {
+    cnt = 0;
+  }
+  
+  if (cnt > MAXIMUM_TIMEOUT_MS)
+  {
+    in_cmd = 0;
+    NVIC_SystemReset();
+  }
+}
 
 int main(void)
 {
@@ -78,7 +99,10 @@ int main(void)
           if (cmd_luts[i].cb)
           {
             printf("\r\nrunning %s\r\n", cmd_luts[i].cmd);
+            in_cmd  = 1;
             cmd_luts[i].cb(recv_buf);
+            in_cmd = 0;
+            printf("\r\nfinish %s\r\n", cmd_luts[i].cmd);
           }
         }
       }
