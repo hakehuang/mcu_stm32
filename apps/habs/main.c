@@ -50,8 +50,7 @@ void HAL_SYSTICK_Callback(void)
 
 int main(void)
 {
-  uint8_t recv_buf[100];
-  int count = 0;
+  volatile uint8_t recv_buf[100];
   
   HAL_Init();
 
@@ -68,46 +67,56 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   printf("\r\nHABS starts!!!\r\n");
-   printf("\r\n %s \r\n", __DATE__);
+   printf("\r %s \r\n", __DATE__);
   /*flash led once*/
   HAL_GPIO_TogglePin(GPIO_LED_PORT, GPIO_LED_PIN); 
   HAL_Delay(100);
   HAL_GPIO_TogglePin(GPIO_LED_PORT, GPIO_LED_PIN);
-  memset(recv_buf, 0, sizeof(recv_buf));
+  memset((void *)recv_buf, 0, sizeof(recv_buf));
   while (1)
   {
-    char ch = 0;
-
-    while( HAL_OK != HAL_UART_Receive(&huart1, (uint8_t*)&ch, 1, 500000))
+    volatile char ch = 0;
+    irq = 0;
+    HAL_UART_Receive_IT(&huart1, (uint8_t*)&recv_buf, sizeof(recv_buf));
+    
+    while(irq == 0)
     {
-      ;
+      //HAL_UART_Receive_IT(&huart1, (uint8_t*)&recv_buf, sizeof(recv_buf));
+      HAL_Delay(100);
     }
 
-    if(ch != 0x0d)
+    if(strstr((char *)recv_buf, "\r") == NULL )
     {
-       recv_buf[count%100] = ch;
-       printf("%c", ch);
-       count++;
-    } else if (count > 0){
-      int i;
-      recv_buf[count%100] = '\0';
-      
+       printf("\r%s", recv_buf);
+       if (huart1.RxXferCount == 0)
+       {
+          HAL_UART_Abort(&huart1);
+          memset((void *)recv_buf, 0, sizeof(recv_buf));
+       }
+    } else {
+      int i, meet = 0;
+      HAL_UART_Abort(&huart1);
       for (i=0; i < sizeof(cmd_luts) / sizeof(CMD_LUT_T); i++)
       {
-        if (strncmp((char const *)recv_buf, cmd_luts[i].cmd, count)==0)
+        if (strncmp((char const *)recv_buf, cmd_luts[i].cmd, strlen(cmd_luts[i].cmd))==0)
         {
           if (cmd_luts[i].cb)
           {
             printf("\r\nrunning %s\r\n", cmd_luts[i].cmd);
             in_cmd  = 1;
-            cmd_luts[i].cb(recv_buf);
+            cmd_luts[i].cb((void *)recv_buf);
             in_cmd = 0;
+            meet = 1;
             printf("\r\nfinish %s\r\n", cmd_luts[i].cmd);
+            break;
           }
         }
       }
-      memset(recv_buf, 0, sizeof(recv_buf));
-      count = 0;
+      if (meet == 0)
+      {
+         printf("\rnot support %s\r\n", recv_buf);
+      }
+      memset((void *)recv_buf, 0, sizeof(recv_buf));
     }
   } 
 }

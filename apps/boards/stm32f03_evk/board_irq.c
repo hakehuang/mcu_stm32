@@ -63,10 +63,11 @@ void SysTick_Handler(void)
 /*  available peripheral interrupt handler's name please refer to the startup */
 /*  file (startup_stm32f0x8.s).                                               */
 /******************************************************************************/
-
+volatile int irq = 0;
 void USART1_IRQHandler(void)
 {
-			
+  irq = 1;
+  HAL_UART_IRQHandler(&huart1);
 }
 
 /**

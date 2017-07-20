@@ -90,6 +90,11 @@ void BSP_UART_Init()
   {
     _Error_Handler(__FILE__, __LINE__);
   }
+  
+  /* USART1_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(USART1_IRQn, 2, 0);
+  
+  HAL_NVIC_EnableIRQ(USART1_IRQn);
 
 }
 

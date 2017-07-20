@@ -14,6 +14,8 @@ void BSP_GPIO_Init();
 
 int getkey(void);
 
+extern volatile int irq;
+
 #ifdef stm32f03_evk
 #define GPIO0_PIN GPIO_PIN_0
 #define GPIO0_PORT GPIOA
