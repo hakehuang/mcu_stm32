@@ -26,6 +26,7 @@ typedef struct cmd_lut_t{
 CMD_LUT_T cmd_luts [] = {
   {"RESET_BOARD", reset_board},
   {"sreset", sreset},
+  {"FTM_0_ACT 0 EX_FTM_CAPTURE", tim_capture},
 };
 
 
@@ -62,6 +63,7 @@ int main(void)
   BSP_LED_Init();
   BSP_UART_Init();
   BSP_GPIO_Init();
+  BSP_TIM_Init();
 
 
   /* Infinite loop */
@@ -76,10 +78,10 @@ int main(void)
   while (1)
   {
     volatile char ch = 0;
-    irq = 0;
+    irq_uart = 0;
     HAL_UART_Receive_IT(&huart1, (uint8_t*)&recv_buf, sizeof(recv_buf));
     
-    while(irq == 0)
+    while(irq_uart == 0)
     {
       //HAL_UART_Receive_IT(&huart1, (uint8_t*)&recv_buf, sizeof(recv_buf));
       HAL_Delay(100);
