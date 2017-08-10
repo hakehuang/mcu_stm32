@@ -170,24 +170,35 @@ void BSP_GPIO_Init()
   __HAL_RCC_GPIOA_CLK_ENABLE();
  
   /* Configure the PA0 pin as output*/
-  GPIO_InitStruct.Pin = GPIO_PIN_0;
+  GPIO_InitStruct.Pin = GPIO0_PIN;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
   
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIO0_PORT, &GPIO_InitStruct);
   
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET);  
+  HAL_GPIO_WritePin(GPIO0_PORT, GPIO0_PIN, GPIO_PIN_RESET);  
 
     /* Configure the PA1 pin as input*/
-  GPIO_InitStruct.Pin = GPIO_PIN_1;
+  GPIO_InitStruct.Pin = GPIO1_PIN;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+  
+  HAL_GPIO_Init(GPIO1_PORT, &GPIO_InitStruct);
+  
+  HAL_GPIO_WritePin(GPIO1_PORT, GPIO1_PIN, GPIO_PIN_RESET);
+  
+      /* Configure the PA2 pin as output*/
+  GPIO_InitStruct.Pin = GPIO2_PIN;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
   
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIO2_PORT, &GPIO_InitStruct);
+  //init 0
+  HAL_GPIO_WritePin(GPIO2_PORT, GPIO2_PIN, GPIO_PIN_RESET);
   
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1, GPIO_PIN_RESET); 
 }
 
 void BSP_TIM_Init()

@@ -29,7 +29,11 @@ extern volatile int irq_tim;
 #define GPIO0_PIN GPIO_PIN_0
 #define GPIO0_PORT GPIOA
 #define GPIO_LED_PIN GPIO_PIN_4
+#define GPIO1_PIN GPIO_PIN_1
+#define GPIO1_PORT GPIOA
 #define GPIO_LED_PORT GPIOA
+#define GPIO2_PIN GPIO_PIN_2
+#define GPIO2_PORT GPIOA
 #define TIM_INSTANCE TIM14
 #define TIM_CHANNEL TIM_CHANNEL_1
 #define TIM_GPIO_PORT GPIOB
