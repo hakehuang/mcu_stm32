@@ -9,7 +9,7 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-#define MAXIMUM_TIMEOUT_MS 5000
+#define MAXIMUM_TIMEOUT_MS 600000
 
 void SystemClock_Config(void);
 
