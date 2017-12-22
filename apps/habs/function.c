@@ -122,6 +122,7 @@ void tim_capture(void * param)
   }
   printf("FREQ: %d \r\n", uwFrequency);
   printf("RATIO: %d\r\n", 50);
+  HAL_TIM_IC_Stop_IT(&TimHandle, TIM_CHANNEL);
 }
 
 void gpio_2_operation(void * param)

@@ -121,7 +121,7 @@ int main(void)
       {
          printf("\rnot support %s\r\n", recv_buf);
       }
-      _memset((void *)recv_buf, 0, sizeof(recv_buf));
+      _memset((void *)recv_buf, 1, sizeof(recv_buf));
     }
   } 
 }
