@@ -11,6 +11,8 @@ void sreset(void * param);
 
 void tim_capture(void * param);
 
+void adc_measure(void * param);
+
 void gpio_2_operation(void * param);
 
 void gpio_1_operation(void * param);

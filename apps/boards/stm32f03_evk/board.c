@@ -6,6 +6,8 @@ TIM_HandleTypeDef TimHandle;
 
 TIM_IC_InitTypeDef sICConfig;
 
+ADC_HandleTypeDef AdcHandle;
+
 
 void BSP_LED_Init()
 {
@@ -177,7 +179,7 @@ void BSP_GPIO_Init()
   
   HAL_GPIO_Init(GPIO0_PORT, &GPIO_InitStruct);
   
-  HAL_GPIO_WritePin(GPIO0_PORT, GPIO0_PIN, GPIO_PIN_RESET);  
+  HAL_GPIO_WritePin(GPIO0_PORT, GPIO0_PIN, GPIO_PIN_SET);  
 
     /* Configure the PA1 pin as input*/
   GPIO_InitStruct.Pin = GPIO1_PIN;
@@ -238,7 +240,51 @@ void BSP_TIM_Init()
   }
 }
 
+void BSP_ADC_Init()
+{
+  ADC_ChannelConfTypeDef sConfig;
+  AdcHandle.Instance          = ADCx;
+  
+  if (HAL_ADC_DeInit(&AdcHandle) != HAL_OK)
+  {
+    /* ADC de-initialization Error */
+    Error_Handler();
+  }
+  
+  AdcHandle.Init.ClockPrescaler        = ADC_CLOCK_SYNC_PCLK_DIV4;
+  AdcHandle.Init.Resolution            = ADC_RESOLUTION_12B;
+  AdcHandle.Init.DataAlign             = ADC_DATAALIGN_RIGHT;
+  AdcHandle.Init.ScanConvMode          = DISABLE;                       /* Sequencer disabled (ADC conversion on only 1 channel: channel set on rank 1) */
+  AdcHandle.Init.EOCSelection          = ADC_EOC_SINGLE_CONV;
+  AdcHandle.Init.LowPowerAutoWait      = DISABLE;
+  AdcHandle.Init.LowPowerAutoPowerOff  = DISABLE;
+  AdcHandle.Init.ContinuousConvMode    = DISABLE;                       /* Continuous mode disabled to have only 1 conversion at each conversion trig */
+  AdcHandle.Init.DiscontinuousConvMode = DISABLE;                       /* Parameter discarded because sequencer is disabled */
+  AdcHandle.Init.ExternalTrigConv      = ADC_SOFTWARE_START;            /* Software start to trig the 1st conversion manually, without external event */
+  AdcHandle.Init.ExternalTrigConvEdge  = ADC_EXTERNALTRIGCONVEDGE_NONE;
+  AdcHandle.Init.DMAContinuousRequests = ENABLE;
+  AdcHandle.Init.Overrun               = ADC_OVR_DATA_OVERWRITTEN;
 
+
+
+  if (HAL_ADC_Init(&AdcHandle) != HAL_OK)
+  {
+    /* ADC initialization Error */
+    Error_Handler();
+  }
+
+  /*##-2- Configure ADC regular channel ######################################*/
+  sConfig.Channel      = ADCx_CHANNEL;
+  sConfig.Rank         = ADC_RANK_CHANNEL_NUMBER;
+  sConfig.SamplingTime = ADC_SAMPLETIME_28CYCLES_5;
+
+
+  if (HAL_ADC_ConfigChannel(&AdcHandle, &sConfig) != HAL_OK)
+  {
+    /* Channel Configuration Error */
+    Error_Handler();
+  }
+}
 
 /**
   * @brief  Retargets the C library printf function to the USART.

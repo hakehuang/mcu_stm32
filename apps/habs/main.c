@@ -29,7 +29,13 @@ CMD_LUT_T cmd_luts [] = {
   {"FTM_0_ACT 0 EX_FTM_CAPTURE", tim_capture},
   {"GPIO_2_HIGH", gpio_2_operation},
   {"GPIO_2_LOW", gpio_2_operation},
+  {"GPIO_0_HIGH", gpio_2_operation},
+  {"GPIO_0_LOW", gpio_2_operation},
+  {"PRESS_BUTTON", gpio_2_operation},
   {"R_GPIO", gpio_1_operation},
+  {"CHECK_LED", gpio_1_operation},
+  {"ADC_0_ACT 0 MEASURE", adc_measure},
+  {"ADC_0_READ", adc_measure},
 };
 
 
@@ -67,6 +73,7 @@ int main(void)
   BSP_UART_Init();
   BSP_GPIO_Init();
   BSP_TIM_Init();
+  BSP_ADC_Init();
 
 
   /* Infinite loop */

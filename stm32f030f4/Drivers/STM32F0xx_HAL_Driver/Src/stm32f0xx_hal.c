@@ -50,6 +50,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f0xx_hal.h"
+extern ADC_HandleTypeDef AdcHandle;
 
 /** @addtogroup STM32F0xx_HAL_Driver
   * @{
@@ -68,10 +69,10 @@
   * @{
   */
 /** 
-  * @brief STM32F0xx HAL Driver version number V1.6.0
+  * @brief STM32F0xx HAL Driver version number V1.7.0
   */
 #define __STM32F0xx_HAL_VERSION_MAIN   (0x01) /*!< [31:24] main version */
-#define __STM32F0xx_HAL_VERSION_SUB1   (0x06) /*!< [23:16] sub1 version */
+#define __STM32F0xx_HAL_VERSION_SUB1   (0x07) /*!< [23:16] sub1 version */
 #define __STM32F0xx_HAL_VERSION_SUB2   (0x00) /*!< [15:8]  sub2 version */
 #define __STM32F0xx_HAL_VERSION_RC     (0x00) /*!< [7:0]  release candidate */ 
 #define __STM32F0xx_HAL_VERSION         ((__STM32F0xx_HAL_VERSION_MAIN << 24U)\
@@ -189,7 +190,7 @@ HAL_StatusTypeDef HAL_DeInit(void)
   __HAL_RCC_AHB_RELEASE_RESET();
 
   /* De-Init the low level hardware */
-  HAL_MspDeInit();
+  HAL_MspDeInit(&AdcHandle);
     
   /* Return function status */
   return HAL_OK;
@@ -210,7 +211,7 @@ __weak void HAL_MspInit(void)
   * @brief  DeInitializes the MSP.
   * @retval None
   */
-__weak void HAL_MspDeInit(void)
+__weak void HAL_MspDeInit(ADC_HandleTypeDef *hadc)
 {
   /* NOTE : This function Should not be modified, when the callback is needed,
             the HAL_MspDeInit could be implemented in the user file
@@ -230,7 +231,7 @@ __weak void HAL_MspDeInit(void)
   *       than the peripheral interrupt. Otherwise the caller ISR process will be blocked.
   *       The function is declared as __Weak  to be overwritten  in case of other
   *       implementation  in user file.
-  * @param TickPriority: Tick interrupt priority.
+  * @param TickPriority Tick interrupt priority.
   * @retval HAL status
   */
 __weak HAL_StatusTypeDef HAL_InitTick(uint32_t TickPriority)
@@ -305,7 +306,7 @@ __weak uint32_t HAL_GetTick(void)
   *       is incremented.
   * @note ThiS function is declared as __weak to be overwritten in case of other
   *       implementations in user file.
-  * @param Delay: specifies the delay time length, in milliseconds.
+  * @param Delay specifies the delay time length, in milliseconds.
   * @retval None
   */
 __weak void HAL_Delay(__IO uint32_t Delay)

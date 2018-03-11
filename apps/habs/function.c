@@ -1,4 +1,5 @@
 
+#include <math.h>
 #include "function.h"
 
 void _memset(void * in, int val, size_t size)
@@ -108,21 +109,91 @@ void sreset(void * param)
 
 void tim_capture(void * param)
 {
+  int timeout_count = 100;
+  int sample_count = 20;
+  uint32_t freq_sum = 0;
   irq_tim = 0;
-   /*##-3- Start the Input Capture in interrupt mode ##########################*/
-  if(HAL_TIM_IC_Start_IT(&TimHandle, TIM_CHANNEL) != HAL_OK)
+  
+  while (sample_count){
+     /*##-3- Start the Input Capture in interrupt mode ##########################*/
+    if(HAL_TIM_IC_Start_IT(&TimHandle, TIM_CHANNEL) != HAL_OK)
+    {
+      /* Starting Error */
+      Error_Handler();
+    }
+    HAL_Delay(100);
+    while(irq_tim == 0 && timeout_count)
+    {
+      HAL_Delay(100);
+      timeout_count--;
+    }
+    
+    if (0 == timeout_count)
+    {
+      printf("fail, timeout to get FREQ!\r\n");
+      HAL_TIM_IC_Stop_IT(&TimHandle, TIM_CHANNEL);
+      return;
+    }
+    else
+    {
+      /* skip first 5 samples since it's not accurate, use last 15 samples average */
+      if (sample_count <= 15)
+      {
+        freq_sum += uwFrequency;
+      }
+      
+      if (1 == sample_count)
+      {
+        printf("FREQ:%d \r\n", freq_sum/15);
+        printf("RATIO:%d\r\n", 50);
+      }
+    }
+    HAL_TIM_IC_Stop_IT(&TimHandle, TIM_CHANNEL);
+    sample_count--;
+  }
+}
+
+void adc_measure(void * param)
+{
+  __IO uint16_t uhADCxConvertedValue = 0;
+  
+  /* compute the value of voltage 500/1024 * 3.3(v) = 1611(mv)*/
+  uint16_t expect_value = 1611;
+  uint16_t actual_value = 0;
+  
+  if (HAL_ADC_Start(&AdcHandle) != HAL_OK)
   {
-    /* Starting Error */
+    /* Start Conversation Error */
     Error_Handler();
   }
-  HAL_Delay(100);
-  while(irq_tim == 0)
+  
+  if (HAL_ADC_PollForConversion(&AdcHandle, 10) != HAL_OK)
   {
-    HAL_Delay(100);
+    /* End Of Conversion flag not set on time */
+    Error_Handler();
   }
-  printf("FREQ: %d \r\n", uwFrequency);
-  printf("RATIO: %d\r\n", 50);
-  HAL_TIM_IC_Stop_IT(&TimHandle, TIM_CHANNEL);
+  else
+  {
+    /* ADC conversion completed */
+    /*##-5- Get the converted value of regular channel  ########################*/
+    uhADCxConvertedValue = HAL_ADC_GetValue(&AdcHandle);
+    if (_strstr((char const *)param, "READ")!= NULL)
+    {
+      printf("DAC Output is %d", uhADCxConvertedValue);
+    } else {
+      actual_value = (uint16_t)((float)3300*uhADCxConvertedValue/4096);
+      
+      printf("DAC Output expected value is 1611, Measure value is %d !\r\n", actual_value);
+      if((fabs(actual_value-expect_value)) < (expect_value/10.0))
+      {
+        printf("VOLTAGE_VERIFY_PASS !\n");
+      }
+      else
+      {
+        printf("VOLTAGE_VERIFY_FAIL !\n");
+      }
+    }
+  }
 }
 
 void gpio_2_operation(void * param)
@@ -135,8 +206,13 @@ void gpio_2_operation(void * param)
   {
    // HAL_GPIO_TogglePin(GPIO2_PORT, GPIO2_PIN);
     HAL_GPIO_WritePin(GPIO2_PORT, GPIO2_PIN, GPIO_PIN_SET);
-  } else {
+  } else if (_strstr((char const *)param, "LOW")!= NULL) {
     HAL_GPIO_WritePin(GPIO2_PORT, GPIO2_PIN, GPIO_PIN_RESET);
+  } else
+  {
+    HAL_GPIO_WritePin(GPIO2_PORT, GPIO2_PIN, GPIO_PIN_RESET);
+    HAL_Delay(100);
+    HAL_GPIO_WritePin(GPIO2_PORT, GPIO2_PIN, GPIO_PIN_SET);
   }
 }
 
@@ -150,9 +226,9 @@ void gpio_1_operation(void * param)
   ret = HAL_GPIO_ReadPin(GPIO1_PORT, GPIO1_PIN);
   if (ret == GPIO_PIN_RESET)
   {
-    printf("PIN LOW\r\n");
+    printf("LOW_LED_ON   PIN LOW\r\n");
   } else {
-    printf("PIN HIGH\r\n");
+    printf("HIGH_LED_OFF   PIN HIGH\r\n");
   }
 }
 
