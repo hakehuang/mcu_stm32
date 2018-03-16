@@ -69,10 +69,10 @@ int _strncmp(const char * in, const char * cm, size_t len)
 void reset_board(void * param)
 {
   //toogle led before do anything
-  HAL_GPIO_TogglePin(GPIO_LED_PORT, GPIO_LED_PIN); 
+  HAL_GPIO_TogglePin(GPIO_LED_PORT, GPIO_LED_PIN);
   HAL_Delay(100);
   HAL_GPIO_TogglePin(GPIO_LED_PORT, GPIO_LED_PIN);
-  
+
 // HAL_GPIO_TogglePin(GPIO0_PORT, GPIO0_PIN);
   HAL_GPIO_WritePin(GPIO0_PORT, GPIO0_PIN, GPIO_PIN_RESET);
   HAL_Delay(200);
@@ -90,7 +90,7 @@ void reset_board(void * param)
 void delay_to_reset(void * param)
 {
     //toogle led before do anything
-  HAL_GPIO_TogglePin(GPIO_LED_PORT, GPIO_LED_PIN); 
+  HAL_GPIO_TogglePin(GPIO_LED_PORT, GPIO_LED_PIN);
   HAL_Delay(100);
   HAL_GPIO_TogglePin(GPIO_LED_PORT, GPIO_LED_PIN);
   while(1)
@@ -101,7 +101,7 @@ void delay_to_reset(void * param)
 
 void sreset(void * param)
 {
-  HAL_GPIO_TogglePin(GPIO_LED_PORT, GPIO_LED_PIN); 
+  HAL_GPIO_TogglePin(GPIO_LED_PORT, GPIO_LED_PIN);
   HAL_Delay(100);
 
   NVIC_SystemReset();
@@ -113,7 +113,7 @@ void tim_capture(void * param)
   int sample_count = 20;
   uint32_t freq_sum = 0;
   irq_tim = 0;
-  
+
   while (sample_count){
      /*##-3- Start the Input Capture in interrupt mode ##########################*/
     if(HAL_TIM_IC_Start_IT(&TimHandle, TIM_CHANNEL) != HAL_OK)
@@ -127,7 +127,7 @@ void tim_capture(void * param)
       HAL_Delay(100);
       timeout_count--;
     }
-    
+
     if (0 == timeout_count)
     {
       printf("fail, timeout to get FREQ!\r\n");
@@ -141,7 +141,7 @@ void tim_capture(void * param)
       {
         freq_sum += uwFrequency;
       }
-      
+
       if (1 == sample_count)
       {
         printf("FREQ:%d \r\n", freq_sum/15);
@@ -156,17 +156,17 @@ void tim_capture(void * param)
 void adc_measure(void * param)
 {
   __IO uint16_t uhADCxConvertedValue = 0;
-  
+
   /* compute the value of voltage 500/1024 * 3.3(v) = 1611(mv)*/
   uint16_t expect_value = 1611;
   uint16_t actual_value = 0;
-  
+
   if (HAL_ADC_Start(&AdcHandle) != HAL_OK)
   {
     /* Start Conversation Error */
     Error_Handler();
   }
-  
+
   if (HAL_ADC_PollForConversion(&AdcHandle, 10) != HAL_OK)
   {
     /* End Of Conversion flag not set on time */
@@ -182,7 +182,7 @@ void adc_measure(void * param)
       printf("DAC Output is %d", uhADCxConvertedValue);
     } else {
       actual_value = (uint16_t)((float)3300*uhADCxConvertedValue/4096);
-      
+
       printf("DAC Output expected value is 1611, Measure value is %d !\r\n", actual_value);
       if((fabs(actual_value-expect_value)) < (expect_value/10.0))
       {
@@ -199,9 +199,9 @@ void adc_measure(void * param)
 void gpio_2_operation(void * param)
 {
     //toogle led before do anything
-  HAL_GPIO_TogglePin(GPIO_LED_PORT, GPIO_LED_PIN); 
+  HAL_GPIO_TogglePin(GPIO_LED_PORT, GPIO_LED_PIN);
   HAL_Delay(100);
-  
+
   if (_strstr((char const *)param, "HIGH")!= NULL)
   {
    // HAL_GPIO_TogglePin(GPIO2_PORT, GPIO2_PIN);
@@ -220,9 +220,9 @@ void gpio_1_operation(void * param)
 {
   GPIO_PinState ret = GPIO_PIN_RESET;
     //toogle led before do anything
-  HAL_GPIO_TogglePin(GPIO_LED_PORT, GPIO_LED_PIN); 
+  HAL_GPIO_TogglePin(GPIO_LED_PORT, GPIO_LED_PIN);
   HAL_Delay(100);
-  
+
   ret = HAL_GPIO_ReadPin(GPIO1_PORT, GPIO1_PIN);
   if (ret == GPIO_PIN_RESET)
   {
@@ -231,5 +231,3 @@ void gpio_1_operation(void * param)
     printf("HIGH_LED_OFF   PIN HIGH\r\n");
   }
 }
-
-
