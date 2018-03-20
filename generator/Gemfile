@@ -1,11 +1,12 @@
 #source 'https://rubygems.org'
 #source 'https://ruby.taobao.org/'
-source 'https://gems.ruby-china.org/'
+source 'http://gems.ruby-china.org/'
 
 gem 'nokogiri','~> 1.6.8.rc2'
 gem 'deep_merge'
 gem 'yml_merger'
 gem 'ebngen'
 gem 'awesome_print'
-
-
+gem 'xsd-populator'
+gem 'xsd-reader'
+gem 'mini_portile2','2.1.0'

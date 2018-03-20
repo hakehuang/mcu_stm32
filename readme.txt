@@ -17,3 +17,5 @@ install IAR 8.10.*
 cd generator
 
 > ruby ./stm32_sdk.rb
+
+try find the project at build folder

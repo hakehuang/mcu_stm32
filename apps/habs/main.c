@@ -1,5 +1,5 @@
 /* Includes ------------------------------------------------------------------*/
-#include <string.h>
+//#include <string.h>
 
 #include "main.h"
 #include "stm32f0xx_hal.h"
@@ -9,7 +9,7 @@
 
 
 /* Private function prototypes -----------------------------------------------*/
-#define MAXIMUM_TIMEOUT_MS 5000
+#define MAXIMUM_TIMEOUT_MS 600000
 
 void SystemClock_Config(void);
 
@@ -27,6 +27,15 @@ CMD_LUT_T cmd_luts [] = {
   {"RESET_BOARD", reset_board},
   {"sreset", sreset},
   {"FTM_0_ACT 0 EX_FTM_CAPTURE", tim_capture},
+  {"GPIO_2_HIGH", gpio_2_operation},
+  {"GPIO_2_LOW", gpio_2_operation},
+  {"GPIO_0_HIGH", gpio_2_operation},
+  {"GPIO_0_LOW", gpio_2_operation},
+  {"PRESS_BUTTON", gpio_2_operation},
+  {"R_GPIO", gpio_1_operation},
+  {"CHECK_LED", gpio_1_operation},
+  {"ADC_0_ACT 0 MEASURE", adc_measure},
+  {"ADC_0_READ", adc_measure},
 };
 
 
@@ -64,6 +73,7 @@ int main(void)
   BSP_UART_Init();
   BSP_GPIO_Init();
   BSP_TIM_Init();
+  BSP_ADC_Init();
 
 
   /* Infinite loop */
@@ -74,7 +84,7 @@ int main(void)
   HAL_GPIO_TogglePin(GPIO_LED_PORT, GPIO_LED_PIN); 
   HAL_Delay(100);
   HAL_GPIO_TogglePin(GPIO_LED_PORT, GPIO_LED_PIN);
-  memset((void *)recv_buf, 0, sizeof(recv_buf));
+  _memset((void *)recv_buf, 0, sizeof(recv_buf));
   while (1)
   {
     volatile char ch = 0;
@@ -87,20 +97,20 @@ int main(void)
       HAL_Delay(100);
     }
 
-    if(strstr((char *)recv_buf, "\r") == NULL )
+    if(_strstr((char *)recv_buf, "\r") == NULL )
     {
        printf("\r%s", recv_buf);
        if (huart1.RxXferCount == 0)
        {
           HAL_UART_Abort(&huart1);
-          memset((void *)recv_buf, 0, sizeof(recv_buf));
+          _memset((void *)recv_buf, 0, sizeof(recv_buf));
        }
     } else {
       int i, meet = 0;
       HAL_UART_Abort(&huart1);
       for (i=0; i < sizeof(cmd_luts) / sizeof(CMD_LUT_T); i++)
       {
-        if (strncmp((char const *)recv_buf, cmd_luts[i].cmd, strlen(cmd_luts[i].cmd))==0)
+        if (_strncmp((char const *)recv_buf, cmd_luts[i].cmd, _strlen(cmd_luts[i].cmd))==0)
         {
           if (cmd_luts[i].cb)
           {
@@ -118,7 +128,7 @@ int main(void)
       {
          printf("\rnot support %s\r\n", recv_buf);
       }
-      memset((void *)recv_buf, 0, sizeof(recv_buf));
+      _memset((void *)recv_buf, 1, sizeof(recv_buf));
     }
   } 
 }
