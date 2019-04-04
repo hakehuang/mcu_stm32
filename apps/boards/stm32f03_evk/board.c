@@ -226,43 +226,6 @@ void BSP_TIM_Init()
     /* Initialization Error */
     Error_Handler();
   }
-   /*##-2- Configure the Input Capture channel ################################*/
-  /* Configure the Input Capture of channel 2 */
-  sICConfig.ICPolarity  = TIM_ICPOLARITY_RISING;
-  sICConfig.ICSelection = TIM_ICSELECTION_DIRECTTI;
-  sICConfig.ICPrescaler = TIM_ICPSC_DIV1;
-  sICConfig.ICFilter    = 0;
-  if(HAL_TIM_IC_ConfigChannel(&TimHandle, &sICConfig, TIM_CHANNEL) != HAL_OK)
-  {
-    /* Configuration Error */
-    Error_Handler();
-  }
-}
-
-void BSP_TIM_Init()
-{
-
-  __HAL_RCC_TIM14_CLK_ENABLE();
-  /* Set TIMx instance */
-  TimHandle.Instance = TIM_INSTANCE;
-
-  /* Initialize TIMx peripheral as follows:
-       + Period = 0xFFFF
-       + Prescaler = 0
-       + ClockDivision = 0
-       + Counter direction = Up
-  */
-  TimHandle.Init.Period            = 0xFFFF;
-  TimHandle.Init.Prescaler         = 0;
-  TimHandle.Init.ClockDivision     = 0;
-  TimHandle.Init.CounterMode       = TIM_COUNTERMODE_UP;
-  TimHandle.Init.RepetitionCounter = 0;
-  TimHandle.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-  if(HAL_TIM_IC_Init(&TimHandle) != HAL_OK)
-  {
-    /* Initialization Error */
-    Error_Handler();
-  }
    /*##-2- Configure the Input Capture channel ################################*/ 
   /* Configure the Input Capture of channel 2 */
   sICConfig.ICPolarity  = TIM_ICPOLARITY_RISING;
